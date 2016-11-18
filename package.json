@@ -1,0 +1,24 @@
+{
+  "name": "bootlesson",
+  "version": "0.0.1",
+  "description": "Projeto Teste",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felipemmasan/bootLesson.git"
+  },
+  "keywords": [
+    "bot",
+    "chat",
+    "chatbot"
+  ],
+  "author": "Felipe Santos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/felipemmasan/bootLesson/issues"
+  },
+  "homepage": "https://github.com/felipemmasan/bootLesson#readme"
+}
