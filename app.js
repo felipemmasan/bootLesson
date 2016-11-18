@@ -11,6 +11,19 @@ var connector = new builder.ChatConnector({appId: 'c0d8fc91-5c91-4f44-ab4b-0ab10
 var bot = new builder.UniversalBot(connector);
 server.post('/API/Messages', connector.listen());
 
-bot.dialog('/', function(session){
-    session.send("Olá")
-});
+bot.dialog('/', [
+    function (session) {
+        session.beginDialog('/askName');
+    },
+    function (session, results) {
+        session.send('Olá %s!', results.response);
+    }
+]);
+bot.dialog('/askName', [
+    function (session) {
+        builder.Prompts.text(session, 'Olá! Qual seu nome?');
+    },
+    function (session, results) {
+        session.endDialogWithResult(results);
+    }
+]);
