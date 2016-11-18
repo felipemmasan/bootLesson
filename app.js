@@ -21,6 +21,8 @@ var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 
 bot.dialog('/', dialog);
 
+dialog.onDefault(builder.DialogAction.send("Desculpe, nao entendi..."));
+
 dialog.matches('Saudacao', [
     function (session, args, next) {
 		session.beginDialog('/askName');
