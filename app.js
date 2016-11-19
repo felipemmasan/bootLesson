@@ -23,7 +23,7 @@ bot.dialog('/', dialog);
 
 dialog.onDefault(builder.DialogAction.send("Desculpe, nao entendi..."));
 
-dialog.matches('Saudacao', [
+dialog.matches('saudacao', [
     function (session, args, next) {
 		session.beginDialog('/askName');
 		//session.beginDialog('/ensureProfile', session.userData.profile);
