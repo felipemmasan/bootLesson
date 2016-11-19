@@ -15,7 +15,7 @@ var bot = new builder.UniversalBot(connector);
 server.post('/API/Messages', connector.listen());
 
 // Variaveis do LUIS
-var model = 'https://api.projectoxford.ai/luis/v2.0/apps/5863eacb-3c6f-458c-ba56-6b8490d16afc?subscription-key=1a3408edc7d04918ade50b6b0e96a11b';
+var model = 'https://api.projectoxford.ai/luis/v2.0/apps/2023e692-04f0-4ff9-819c-4b6ab8817762?subscription-key=428f032ee4454a6aa9d09106822c93c9';
 var recognizer = new builder.LuisRecognizer(model);
 var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 
