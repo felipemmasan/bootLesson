@@ -24,7 +24,7 @@ bot.dialog('/', dialog);
 bot.dialog('/askName', [
     function (session) {
         //session.send('Ola ' + session.message.user.name + ', como posso lhe ajudar?');
-        session.send('Ola , como posso lhe ajudar?');
+        session.send('Ola ' + session.message.user.name + ', como posso lhe ajudar?');
         session.endDialog();
     }
 ]);
