@@ -15,30 +15,47 @@ var bot = new builder.UniversalBot(connector);
 server.post('/API/Messages', connector.listen());
 
 // Variaveis do LUIS
-var model = 'https://api.projectoxford.ai/luis/v2.0/apps/2023e692-04f0-4ff9-819c-4b6ab8817762?subscription-key=428f032ee4454a6aa9d09106822c93c9';
+var model = 'https://api.projectoxford.ai/luis/v2.0/apps/2023e692-04f0-4ff9-819c-4b6ab8817762?subscription-key=428f032ee4454a6aa9d09106822c93c9&verbose=true';
 var recognizer = new builder.LuisRecognizer(model);
 var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 
 bot.dialog('/', dialog);
 
-dialog.onDefault(builder.DialogAction.send("Desculpe, nao entendi..."));
+bot.dialog('/askName', [
+    function (session) {
+        session.send('Ola ' + session.message.user.name + ', como posso lhe ajudar?');
+        session.endDialog();
+    }
+]);
+
+bot.dialog('/listarProdutos', [
+    function(session, args, next){
+        session.send('Temos os seguintes produtos:');
+        session.send(new builder.Message(session)
+            .text("Massas de Pastel")
+            .attachments([{
+                contentType: "image/jpeg",
+                contentUrl: "http://massasfavoritta.com.br/images/res_img_2.jpg"
+            }]));
+
+        session.send(new builder.Message(session)
+            .text("Massas Doces")
+            .attachments([{
+                contentType: "image/jpeg",
+                contentUrl: "http://massasfavoritta.com.br/images/res_img_4.jpg"
+            }]));
+        session.endDialog();
+    }
+]);
 
 dialog.matches('saudacao', [
     function (session, args, next) {
 		session.beginDialog('/askName');
-		//session.beginDialog('/ensureProfile', session.userData.profile);
-    },
-    function (session, results) {
-        session.send('Ola %s!', results.response);
-        session.send('Como posso te ajudar?');
     }
 ]);
 
-bot.dialog('/askName', [
-    function (session) {
-        builder.Prompts.text(session, 'Ola! Como voce gosta de ser chamado?');
-    },
-    function (session, results) {
-        session.endDialogWithResult(results);
-    }
-]);
+dialog.matches('listarProdutos','/listarProdutos');
+
+dialog.onDefault(
+        builder.DialogAction.send("Desculpe, nao entendi...")
+);
