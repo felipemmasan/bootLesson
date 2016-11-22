@@ -38,7 +38,7 @@ bot.dialog('/askName', [
 
 bot.dialog('/listarProdutos', [
     function(session, args, next){
-        session.send('Temos os seguintes produtos:');
+        session.send('Estes são os nossos produtos:');
         session.send(new builder.Message(session)
             .textFormat(builder.TextFormat.xml)
             .attachments([
@@ -49,11 +49,7 @@ bot.dialog('/listarProdutos', [
                     .images([
                         builder.CardImage.create(session, "http://massasfavoritta.com.br/images/res_img_1.jpg")
                         ])
-                    ]));
-
-        session.send(new builder.Message(session)
-            .textFormat(builder.TextFormat.xml)
-            .attachments([
+                    ,
                 new builder.HeroCard(session)
                     .title("Massas para Pastel")
                     .subtitle("Doce")
@@ -62,6 +58,18 @@ bot.dialog('/listarProdutos', [
                         builder.CardImage.create(session, "http://massasfavoritta.com.br/images/res_img_4.jpg")
                         ])
                     ]));
+
+//        session.send(new builder.Message(session)
+//            .textFormat(builder.TextFormat.xml)
+//            .attachments([
+//                new builder.HeroCard(session)
+//                    .title("Massas para Pastel")
+//                   .subtitle("Doce")
+//                    .text("Massas de Pastel Doce")
+//                    .images([
+//                        builder.CardImage.create(session, "http://massasfavoritta.com.br/images/res_img_4.jpg")
+//                        ])
+//                    ]));
             
         session.endDialog();
     }
