@@ -40,18 +40,29 @@ bot.dialog('/listarProdutos', [
     function(session, args, next){
         session.send('Temos os seguintes produtos:');
         session.send(new builder.Message(session)
-            .attachments([{
-                contentType: "image/jpeg",
-                contentUrl: "http://massasfavoritta.com.br/images/res_img_2.jpg",
-                text: "Massas de Pastel"
-            }]));
+            .textFormat(builder.TextFormat.xml)
+            .attachments([
+                new builder.HeroCard(session)
+                    .title("Massas para Pastel")
+                    .subtitle("Normal")
+                    .text("Massas de Pastel Tradicional")
+                    .images([
+                        builder.CardImage.create(session, "http://massasfavoritta.com.br/images/res_img_1.jpg")
+                        ])
+                    ]));
 
         session.send(new builder.Message(session)
-            .attachments([{
-                contentType: "image/jpeg",
-                contentUrl: "http://massasfavoritta.com.br/images/res_img_4.jpg",
-                text: "Massas Doces"
-            }]));
+            .textFormat(builder.TextFormat.xml)
+            .attachments([
+                new builder.HeroCard(session)
+                    .title("Massas para Pastel")
+                    .subtitle("Doce")
+                    .text("Massas de Pastel Doce")
+                    .images([
+                        builder.CardImage.create(session, "http://massasfavoritta.com.br/images/res_img_4.jpg")
+                        ])
+                    ]));
+            
         session.endDialog();
     }
 ]);
