@@ -33,17 +33,17 @@ bot.dialog('/listarProdutos', [
     function(session, args, next){
         session.send('Temos os seguintes produtos:');
         session.send(new builder.Message(session)
-            .text("Massas de Pastel")
             .attachments([{
                 contentType: "image/jpeg",
-                contentUrl: "http://massasfavoritta.com.br/images/res_img_2.jpg"
+                contentUrl: "http://massasfavoritta.com.br/images/res_img_2.jpg",
+                text: "Massas de Pastel"
             }]));
 
         session.send(new builder.Message(session)
-            .text("Massas Doces")
             .attachments([{
                 contentType: "image/jpeg",
-                contentUrl: "http://massasfavoritta.com.br/images/res_img_4.jpg"
+                contentUrl: "http://massasfavoritta.com.br/images/res_img_4.jpg",
+                text: "Massas Doces"
             }]));
         session.endDialog();
     }
