@@ -23,8 +23,15 @@ bot.dialog('/', dialog);
 
 bot.dialog('/askName', [
     function (session) {
+
+        if(session.message.user.name != null){
+            session.send('Ola ' + session.message.user.name + ', como posso lhe ajudar?');
+        }else{
+            session.send('Ola, como posso lhe ajudar?');
+        }
+
         //session.send('Ola ' + session.message.user.name + ', como posso lhe ajudar?');
-        session.send('Ola ' + session.message.user.name + ', como posso lhe ajudar?');
+        
         session.endDialog();
     }
 ]);
