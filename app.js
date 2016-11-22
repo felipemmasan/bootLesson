@@ -29,8 +29,6 @@ bot.dialog('/askName', [
         }else{
             session.send('Ola, como posso lhe ajudar?');
         }
-
-        //session.send('Ola ' + session.message.user.name + ', como posso lhe ajudar?');
         
         session.endDialog();
     }
@@ -42,35 +40,11 @@ bot.dialog('/listarProdutos', [
         session.send(new builder.Message(session)
             .textFormat(builder.TextFormat.xml)
             .attachments([
-                new builder.HeroCard(session)
-                    .title("Massas para Pastel")
-                    .subtitle("Normal")
-                    .text("Massas de Pastel Tradicional")
-                    .images([
-                        builder.CardImage.create(session, "http://massasfavoritta.com.br/images/res_img_1.jpg")
-                        ])
-                    ,
-                new builder.HeroCard(session)
-                    .title("Massas para Pastel")
-                    .subtitle("Doce")
-                    .text("Massas de Pastel Doce")
-                    .images([
-                        builder.CardImage.create(session, "http://massasfavoritta.com.br/images/res_img_4.jpg")
-                        ])
-                    ]));
+                gerarAnuncio("Massas para Pastel","Normal","Massas de Pastel Tradicional","http://massasfavoritta.com.br/images/res_img_1.jpg",session),
+                gerarAnuncio("Massas para Pastel","Doce","Massas de Pastel Doce","http://massasfavoritta.com.br/images/res_img_4.jpg",session)]
+                )
+            );
 
-//        session.send(new builder.Message(session)
-//            .textFormat(builder.TextFormat.xml)
-//            .attachments([
-//                new builder.HeroCard(session)
-//                    .title("Massas para Pastel")
-//                   .subtitle("Doce")
-//                    .text("Massas de Pastel Doce")
-//                    .images([
-//                        builder.CardImage.create(session, "http://massasfavoritta.com.br/images/res_img_4.jpg")
-//                        ])
-//                    ]));
-            
         session.endDialog();
     }
 ]);
@@ -86,3 +60,13 @@ dialog.matches('listarProdutos','/listarProdutos');
 dialog.onDefault(
         builder.DialogAction.send("Desculpe, nao entendi...")
 );
+
+function gerarAnuncio(titulo, subtitulo, texto, imagens, sessao){
+    return new builder.HeroCard(sessao)
+                    .title(titulo)
+                    .subtitle(subtitulo)
+                    .text(texto)
+                    .images([
+                        builder.CardImage.create(sessao, imagens)
+                        ]);
+};
